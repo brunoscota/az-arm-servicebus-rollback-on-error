@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "serviceBusNamespaceName": {
-        "value": null
+        "value": "namespaceTest"
       },
       "serviceBusTopicName": {
-        "value": null
+        "value": "topic1test"
       },
       "serviceBusSubscriptionName": {
-        "value": null
+        "value": "test12"
       },
       "serviceBusRuleName": {
-        "value": null
+        "value": "testrule"
       },
       "location": {
-        "value": "[resourceGroup().location]"
+        "value": "eastus2"
       }
     }
   }

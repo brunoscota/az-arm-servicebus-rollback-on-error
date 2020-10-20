@@ -18,7 +18,7 @@ When a deployment fails, you can automatically redeploy an earlier, successful d
 - The redeployment is run exactly as it was run previously with the same parameters. You can't change the parameters.
 - The previous deployment is run using the complete mode. Any resources not included in the previous deployment are deleted, and any resource configurations are set to their previous state. Make sure you fully understand the deployment modes.
 The redeployment only affects the resources, any data changes aren't affected.
-- You can use this feature only with resource group deployments, not subscription or management group level deployments. For more information about subscription level deployment, see Create resource groups and resources at the subscription level.
+- You can use this feature only with resource group deployments, not subscription or management group level deployments.
 - You can only use this option with root level deployments. Deployments from a nested template aren't available for redeployment.
 
 To use this option, your deployments must have unique names so they can be identified in the history. If you don't have unique names, the current failed deployment might overwrite the previously successful deployment in the history.
@@ -30,8 +30,9 @@ To redeploy the last successful deployment, add the `-RollbackToLastDeployment` 
 
 ```azurepowershell-interactive
 New-AzResourceGroupDeployment -Name ExampleDeployment02 `
-  -ResourceGroupName $resourceGroupName `
-  -TemplateFile c:\MyTemplates\azuredeploy.json `
+  -ResourceGroupName "Test" `
+  -TemplateFile ./arm/azuredeploy.json `
+  -TemplateParameterFile ./arm/azuredeploy.parameters.json `
   -RollbackToLastDeployment
 ```
 
@@ -39,8 +40,9 @@ To redeploy a specific deployment, use the `-RollBackDeploymentName` parameter a
 
 ```azurepowershell-interactive
 New-AzResourceGroupDeployment -Name ExampleDeployment02 `
-  -ResourceGroupName $resourceGroupName `
-  -TemplateFile c:\MyTemplates\azuredeploy.json `
+  -ResourceGroupName "Test" `
+  -TemplateFile ./arm/azuredeploy.json `
+  -TemplateParameterFile ./arm/azuredeploy.parameters.json `
   -RollBackDeploymentName ExampleDeployment01
 ```
 
@@ -50,10 +52,10 @@ To redeploy the last successful deployment, add the `--rollback-on-error` parame
 
 ```azurecli-interactive
 az deployment group create \
-  --name ExampleDeployment \
-  --resource-group ExampleGroup \
-  --template-file storage.json \
-  --parameters storageAccountType=Standard_GRS \
+  --name ExampleDeployment02 \
+  --resource-group Teste \
+  --template-file ./arm/azuredeploy.json \
+  --parameters ./arm/azuredeploy.parameters.json \
   --rollback-on-error
 ```
 
@@ -62,9 +64,9 @@ To redeploy a specific deployment, use the `--rollback-on-error` parameter and p
 ```azurecli-interactive
 az deployment group create \
   --name ExampleDeployment02 \
-  --resource-group ExampleGroup \
-  --template-file storage.json \
-  --parameters storageAccountType=Standard_GRS \
+  --resource-group Teste \
+  --template-file ./arm/azuredeploy.json \
+  --parameters ./arm/azuredeploy.parameters.json \
   --rollback-on-error ExampleDeployment01
 ```
 
@@ -74,6 +76,6 @@ In this project we have a sample code that uses a servicebus deployed by ARM tem
 
 # Work Progress
 
-50%
+95%
 
 # Todo List

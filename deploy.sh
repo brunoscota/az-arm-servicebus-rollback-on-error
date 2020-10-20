@@ -1,6 +1,6 @@
 az deployment group create \
-  --name ExampleDeployment \
-  --resource-group ExampleGroup \
-  --template-file storage.json \
-  --parameters storageAccountType=Standard_GRS \
+  --name ExampleDeployment01 \
+  --resource-group Teste \
+  --template-file ./arm/azuredeploy.json \
+  --parameters ./arm/azuredeploy.parameters.json \
   --rollback-on-error
